@@ -1,0 +1,73 @@
+
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'lista_programas.css' %}">
+
+<div class="layout">
+
+    <!-- Contenedor principal izquierda -->
+    <div class="contenedor-principal">
+        <h1>SENA APP</h1>
+        <h1>Lista de Programas de Formación</h1>
+        <p>Total registrados: {{ total_programas }}</p>
+
+        <div class="tabla-contenedor">
+            <table class="tabla-programas">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Nivel</th>
+                        <th>Modalidad</th>
+                        <th>Meses</th>
+                        <th>Horas</th>
+                        <th>Descripción</th>
+                        <th>Competencias</th>
+                        <th>Perfil</th>
+                        <th>Requisitos</th>
+                        <th>Centro</th>
+                        <th>Regional</th>
+                        <th>Estado</th>
+                        <th>Creación</th>
+                        <th>Registro</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for prog in lista_programas %}
+                    <tr>
+                        <td>{{ prog.id }}</td>
+                        <td>{{ prog.codigo }}</td>
+                        <td>{{ prog.nombre }}</td>
+                        <td>{{ prog.nivel_formacion }}</td>
+                        <td>{{ prog.modalidad }}</td>
+                        <td>{{ prog.duracion_meses }}</td>
+                        <td>{{ prog.duracion_horas }}</td>
+                        <td class="texto-largo">{{ prog.descripcion }}</td>
+                        <td class="texto-largo">{{ prog.competencias }}</td>
+                        <td class="texto-largo">{{ prog.perfil_egreso }}</td>
+                        <td class="texto-largo">{{ prog.requisitos_ingreso }}</td>
+                        <td>{{ prog.centro_formacion }}</td>
+                        <td>{{ prog.regional }}</td>
+                        <td>{{ prog.estado }}</td>
+                        <td>{{ prog.fecha_creacion }}</td>
+                        <td>{{ prog.fecha_registro }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- Panel lateral derecho -->
+    <div class="panel">
+        <h2>Panel</h2>
+        <p>Bienvenido al panel de gestión del SENA. Aquí puedes visualizar y administrar la información de los instructores registrados en el sistema.</p>
+    </div>
+
+</div>
+{% endblock %}

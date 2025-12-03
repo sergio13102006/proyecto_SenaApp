@@ -1,0 +1,17 @@
+{% extends 'master.html' %}
+
+{% block content %}
+<h2>Lista de Instructores</h2>
+
+<ul>
+  {% for inst in lista_instructores %}
+    <li>
+      <strong>{{ inst.nombre }}</strong><br>
+      Documento: {{ inst.documento_identidad }} <br>
+      Email: {{ inst.email }} <br>
+      Teléfono: {{ inst.telefono }}
+    </li>
+    <hr>
+  {% endfor %}
+</ul>
+{% endblock %}
