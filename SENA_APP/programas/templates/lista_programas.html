@@ -1,21 +1,21 @@
-
+{% extends 'master.html' %}
 {% load static %}
+
+{% block page_title %}Datos de programas{% endblock %}
 
 {% block content %}
 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="{% static 'lista_programas.css' %}">
 
 <div class="layout">
-
-    <!-- Contenedor principal izquierda -->
     <div class="contenedor-principal">
-        <h1>SENA APP</h1>
-        <h1>Lista de Programas de Formación</h1>
-        <p>Total registrados: {{ total_programas }}</p>
 
-        <div class="tabla-contenedor">
-            <table class="tabla-programas">
-                <thead>
+        <h2 class="mb-3">Listado de Programas</h2>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover align-middle">
+                <thead class="table-success">
                     <tr>
                         <th>ID</th>
                         <th>Código</th>
@@ -24,15 +24,7 @@
                         <th>Modalidad</th>
                         <th>Meses</th>
                         <th>Horas</th>
-                        <th>Descripción</th>
-                        <th>Competencias</th>
-                        <th>Perfil</th>
-                        <th>Requisitos</th>
-                        <th>Centro</th>
-                        <th>Regional</th>
-                        <th>Estado</th>
-                        <th>Creación</th>
-                        <th>Registro</th>
+                        <th>Acción</th>
                     </tr>
                 </thead>
 
@@ -46,28 +38,18 @@
                         <td>{{ prog.modalidad }}</td>
                         <td>{{ prog.duracion_meses }}</td>
                         <td>{{ prog.duracion_horas }}</td>
-                        <td class="texto-largo">{{ prog.descripcion }}</td>
-                        <td class="texto-largo">{{ prog.competencias }}</td>
-                        <td class="texto-largo">{{ prog.perfil_egreso }}</td>
-                        <td class="texto-largo">{{ prog.requisitos_ingreso }}</td>
-                        <td>{{ prog.centro_formacion }}</td>
-                        <td>{{ prog.regional }}</td>
-                        <td>{{ prog.estado }}</td>
-                        <td>{{ prog.fecha_creacion }}</td>
-                        <td>{{ prog.fecha_registro }}</td>
+
+                        <td>
+                           <a href="{% url 'programa_detalle' prog.id %}" class="btn-verde">Ver más</a>
+                        </td>
+
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
+
         </div>
-
     </div>
-
-    <!-- Panel lateral derecho -->
-    <div class="panel">
-        <h2>Panel</h2>
-        <p>Bienvenido al panel de gestión del SENA. Aquí puedes visualizar y administrar la información de los instructores registrados en el sistema.</p>
-    </div>
-
 </div>
+
 {% endblock %}

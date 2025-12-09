@@ -1,0 +1,82 @@
+{% extends "master.html" %}
+{% load static %}
+
+{% block page_title %}Detalle del Curso{% endblock %}
+
+{% block content %}
+
+<link href="{% static 'main.css' %}" rel="stylesheet">
+
+<div class="container my-4">
+
+
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">{{ curso.nombre }}</h4>
+                <span class="badge bg-light text-dark">ID: {{ curso.id }}</span>
+            </div>
+        </div>
+
+        <div class="card-body">
+
+            <div class="row g-3 mb-3">
+
+                <div class="col-md-6">
+                    <p class="mb-1"><strong>Código:</strong> {{ curso.codigo }}</p>
+                    <p class="mb-1"><strong>Programa:</strong> {{ curso.programa.nombre }}</p>
+                    <p class="mb-1"><strong>Estado:</strong> {{ curso.get_estado_display }}</p>
+                </div>
+
+                <div class="col-md-6">
+                    <p class="mb-1"><strong>Instructor Coordinador:</strong> {{ curso.instructor_coordinador.nombre_completo }}</p>
+                    <p class="mb-1"><strong>Fecha de Inicio:</strong> {{ curso.fecha_inicio }}</p>
+                    <p class="mb-1"><strong>Fecha de Fin:</strong> {{ curso.fecha_fin }}</p>
+                </div>
+
+            </div>
+
+            <hr>
+
+            <div class="mb-3">
+                <h5>Observaciones</h5>
+                <p>{{ curso.observaciones|default:"Sin observaciones" }}</p>
+            </div>
+
+            <hr>
+
+            <!-- Aprendices del curso -->
+            <div class="mb-4">
+                <h5>Aprendices inscritos</h5>
+
+                {% if curso.aprendices.all %}
+                    <ul class="list-group">
+                        {% for a in curso.aprendices.all %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>{{ a.nombre }}</strong><br>
+                                <small class="text-muted">Documento: {{ a.documento_identidad }}</small>
+                            </div>
+                            <span class="badge bg-secondary">ID {{ a.id }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="text-muted">No hay aprendices registrados.</p>
+                {% endif %}
+                
+            </div>
+
+            <div class="mt-4 d-flex gap-2">
+                    <a href="{% url 'lista_curso' %}" class="btn btn-outline-secondary mb-3">
+        ← Volver al listado
+    </a>
+            </div>
+        </div>
+        
+    </div>
+    
+</div>
+
+{% endblock %}
