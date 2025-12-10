@@ -1,0 +1,55 @@
+{% extends 'master.html' %}
+
+{% block page_title %}
+Datos de Aprendices
+{% endblock %}
+
+{% block content %}
+<h1>Datos de Aprendices</h1>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+
+<table border="1" cellpadding="5">
+    <thead>
+        <tr>
+            <th>Documento</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for a in myaprendices %}
+        <tr>
+            <td>{{ a.documento_identidad }}</td>
+            <td>{{ a.nombre }}</td>
+            <td>{{ a.apellido }}</td>
+
+            <td>
+                <div class="d-flex gap-2">
+                    <a href="{% url 'aprendices:crear_aprendiz' %}" class="btn btn-secondary btn-mini">
+                    <i class="bi bi-person-plus-fill"></i>
+                    </a>
+                <a href="{% url 'aprendices:editar_aprendiz' a.documento_identidad %}" 
+                class="btn btn-warning btn-mini">
+                    <i class="bi bi-pencil-square"></i>
+                </a> 
+
+                <a href="{% url 'aprendices:eliminar_aprendiz' a.documento_identidad %}" 
+                class="btn btn-danger btn-mini">
+                    <i class="bi bi-trash-fill"></i>
+                </a>
+</svg>
+</div>
+
+</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+     <a href="/" class="btn btn-secondary mt-3">Volver a inicio</a>
+{% endblock %}

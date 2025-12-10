@@ -1,0 +1,66 @@
+/* ===== Tabla de Instructores ===== */
+.tabla-instructores {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tabla-instructores th {
+    background: var(--color-principal, #0a6d2c);
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+.tabla-instructores td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tabla-instructores tr:nth-child(even) {
+    background: #f4f4f4;
+}
+
+.tabla-instructores tr:hover {
+    background: #e1f3ff;
+}
+
+/* ===== Botón Volver ===== */
+.btn-volver {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 18px;
+    background-color: var(--color-principal, green);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: 0.2s;
+}
+
+.btn-volver:hover {
+    background-color: #06461d;
+    color: white;
+}
+
+/* ===== Tabla Responsiva ===== */
+.tabla-responsive {
+    overflow-x: auto;
+    width: 100%;
+}
+
+table {
+    white-space: nowrap;
+}
+
+/* ===== Botones de iconos pequeños ===== */
+.btn-icon-sm {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: 50%;        /* hace el botón redondo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}

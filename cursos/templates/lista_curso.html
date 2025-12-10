@@ -1,0 +1,55 @@
+{% extends 'master.html' %}
+{% load static %}
+
+{% block page_title %}Listado de Cursos{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Listado de Cursos</h2>
+
+    <div class="card shadow">
+        <div class="card-body">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Programa</th>
+                        <th>Fecha Inicio</th>
+                        <th>Fecha Fin</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for curso in cursos %}
+                    <tr>
+                        <td>{{ curso.codigo }}</td>
+                        <td>{{ curso.nombre }}</td>
+                        <td>{{ curso.programa.nombre }}</td>
+                        <td>{{ curso.fecha_inicio }}</td>
+                        <td>{{ curso.fecha_fin }}</td>
+                        <td>{{ curso.get_estado_display }}</td>
+                        <td>
+                            <a href="{% url 'detalle_cursos' curso.id %}" class="btn btn-sm btn-primary">
+                                Ver Detalles
+                            </a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="7" class="text-center text-muted">No hay cursos registrados.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer text-end">
+            <strong>Total de cursos: {{ total_cursos }}</strong>
+        </div>
+    </div>
+         <a href="/" class="btn btn-secondary mt-3">Volver a inicio</a>
+    <div class="text-center mt-4">
+    </div>
+</div>
+{% endblock %}
